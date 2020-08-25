@@ -14,9 +14,25 @@ module.exports = {
         options: { presets: ["@babel/env"] }
       },
       {
+        // look for .css or .scss files
         test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader"]
-      }
+        // in the `src` directory
+        include: [path.resolve("./src")],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
@@ -31,5 +47,7 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
 };
