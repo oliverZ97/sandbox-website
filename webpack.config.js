@@ -30,7 +30,24 @@ module.exports = {
             options: {
               sourceMap: true,
             },
-          },
+          }
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false
+            }
+          }
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
         ],
       },
     ]

@@ -1,3 +1,31 @@
 @import "./color-functions.scss";
 @import "./color-themes.scss";
 @import "./variables.scss";
+
+body {
+    background-color: theme-color('background', 'base');
+}
+
+.icon-small {
+    font-size: 20px;
+}
+
+.icon-large {
+    font-size: 40px;
+}
+
+.icon-mr {
+    margin-right: 20px;
+}
+
+.icon-mt {
+    margin-top: 10px;
+}
+
+.text-dark {
+    color: theme-color('text', 'dark');
+}
+
+.text-light {
+    color: theme-color('text', 'light');
+}

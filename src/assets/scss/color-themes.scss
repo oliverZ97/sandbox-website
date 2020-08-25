@@ -1,22 +1,27 @@
 $theme-colors: (
   'primary': (
-    'base': #384ea9,
+    'base': #0C7489,
     'light': #e4efff,
     'dark': #273677
   ),
   'accent': (
-    'base': #f08110,
+    'base': #119DA4,
     'light': #ff8100,
     'dark': #e47f17
   ),
   'foreground': (
-    'base': #393939,
+    'base': #B6D0D5,
     'light': #6e6e6e,
     'dark': #111
   ),
   'background': (
-    'base': #f8f5f5,
+    'base': #13505B,
     'light': #fff,
     'dark': #ddd
+  ),
+  'text': (
+    'base': #F6F6F6,
+    'light': #F6F6F6,
+    'dark': #13505B
   )
 );
