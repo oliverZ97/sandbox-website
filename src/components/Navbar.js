@@ -1,22 +1,25 @@
 import React, { Component } from "react";
 import "../assets/scss/components/Navbar.scss";
 
+
+
 class Navbar extends Component {
+
   render() {
+
+    const items = this.props.pages.map(function(element){
+      return <li key={element.id} ><div className="title-container"><i className={'fas icon icon-small icon-mr ' + element.icon} ></i><p>{element.name}</p></div></li>
+    });
+
     return (
       <nav className="navbar">
         <div className="opacity-container"></div>
         <ul className="navbar-content">
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
-            <li><div className="title-container"><i className="fas fa-camera icon-small icon-mr"></i><p>Test</p></div></li>
+            {items}
         </ul>
       </nav>
     );
   }
 }
 
-export default Navbar;
+export default Navbar; 
