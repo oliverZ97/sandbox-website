@@ -6,6 +6,7 @@ body {
     background-color: theme-color('background', 'base');
 }
 
+//Icons
 .icon {
     width: 10%;
 }
@@ -26,10 +27,28 @@ body {
     margin-top: 10px;
 }
 
+//Text
 .text-dark {
     color: theme-color('text', 'dark');
 }
 
 .text-light {
     color: theme-color('text', 'light');
+}
+
+//Button
+.btn {
+    width: 200px;
+    height: 50px;
+    border-radius: 0px;
+    border: 1px solid theme-color('foreground', 'base');
+    margin: 5px;
+    background-color: theme-color('foreground', 'base');
+    transition: ease-out .2s;
+}
+
+.btn:hover {
+    background-color: theme-color('accent', 'base');
+    border-color: theme-color('accent', 'base');
+    cursor: pointer;
 }

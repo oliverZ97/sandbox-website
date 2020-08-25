@@ -1,0 +1,59 @@
+.input-container {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+input {
+    height: 40px;
+    border-radius: 0;
+    background-color: theme-color('foreground', 'base');
+    border: 1px solid theme-color('foreground', 'base');
+}
+
+select {
+    height: 40px;
+    border-radius: 0;
+    background-color: theme-color('foreground', 'base');
+    border: 1px solid theme-color('foreground', 'base');
+}
+
+.rotate i {
+    transition: transform 3s;
+}
+
+.rotate:hover i {
+    transform: rotate(540deg);
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-content-sb {
+    justify-content: space-between;
+}
+
+.justify-content-se {
+    justify-content: space-evenly;
+}
+
+.history {
+    height: 100%;
+    width: 300px;
+    border: 1px solid white;
+}
