@@ -100,6 +100,7 @@ class DiceInput extends Component {
                 </div>
                 <div className="input-container">
                     <label htmlFor="dice">Dice</label>
+                    <div className="select-wrapper">
                     <select name="dice" id={"dice" + this.props.index}>
                         <option value="d2">D2</option>
                         <option value="d4">D4</option>
@@ -110,6 +111,8 @@ class DiceInput extends Component {
                         <option value="d20">D20</option>
                         <option value="d100">D100</option>
                     </select>
+                    </div>
+                    
                 </div>
                 <div className="input-container">
                     <label htmlFor="bonus">Bonus/Malus</label>
