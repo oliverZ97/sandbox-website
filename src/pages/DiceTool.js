@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import "../assets/scss/pages/DiceTool.scss";
 import PageHeader from "../components/PageHeader";
+import DiceInput from "../components/DiceInput";
 
 class DiceTool extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {inputList: []};
+        this.onAddBtnClick = this.onAddBtnClick.bind(this);
+    }
 
     calcResult() {
         let roll = this.getRolls();
@@ -55,39 +61,29 @@ class DiceTool extends Component {
         return bonus;
     }
 
+    onAddBtnClick(event) {
+        const inputList = this.state.inputList;
+        console.log(inputList.length)
+        this.setState({
+            inputList: inputList.concat(<DiceInput index={inputList.length}/>)
+        });
+    }
+
     render() {
         return (
-            <div className="dicetool">
-                <div className="flex-row justify-content-sb">
+            <div className="dicetool h-100">
+                <div className="flex-row justify-content-sb h-100">
                     <div className="flex-column">
-                        <div className="row-container justify-content-se">
-                            <div className="input-container">
-                                <label for="number">Number of Rolls</label>
-                                <input id="number" placeholder="1" name="number" min="0" type="number"></input>
-                            </div>
-                            <div className="input-container">
-                                <label for="dice">Dice</label>
-                                <select name="dice" id="dice">
-                                    <option value="d2">D2</option>
-                                    <option value="d4">D4</option>
-                                    <option value="d6">D6</option>
-                                    <option value="d8">D8</option>
-                                    <option value="d10">D10</option>
-                                    <option value="d12">D12</option>
-                                    <option value="d20">D20</option>
-                                    <option value="d100">D100</option>
-                                </select>
-                            </div>
-                            <div className="input-container">
-                                <label for="bonus">Bonus/Malus</label>
-                                <input id="bonus" name="bonus" type="number" placeholder="0"></input>
-                            </div>
-                        </div>
-                        <button className="btn rotate" onClick={() => this.calcResult()}><i className="icon-large fas fa-dice-d20"></i></button>
-
+                        <DiceInput index={100}></DiceInput>
+                        <DiceInput index={101}></DiceInput>
+                        <DiceInput index={102}></DiceInput>
+                        {this.state.inputList.map(function (input) {
+                            return input;
+                        })}
+                        <button className="fas fa-plus-circle btn-large btn-ghost" onClick={this.onAddBtnClick}></button>
                     </div>
                     <div className="flex-column history">
-                        <h2>Dice History</h2>
+                        <h2 className="history-title">Dice History</h2>
                     </div>
                 </div>
             </div>
