@@ -44,7 +44,7 @@ class DiceInput extends Component {
             results: resultsStr
         }
         let history = this.props.history;
-        history.push(resultData);
+        history.unshift(resultData);
         this.props.setHistory(history);
     }
 
