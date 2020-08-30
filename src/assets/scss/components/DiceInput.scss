@@ -1,0 +1,58 @@
+@import "../general.scss";
+
+.input-container {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+input {
+    height: 40px;
+    border-radius: 0;
+    background-color: theme-color("foreground", "base");
+    border: 1px solid theme-color("foreground", "base");
+}
+
+select {
+    border-radius: 0;
+    background-color: theme-color("foreground", "base");
+    border: 1px solid theme-color("foreground", "base");
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+}
+
+.select-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.select-wrapper::before {
+    content: "\394";
+    position: absolute;
+    top: 7px;
+    right: 6px;
+    color: #13505b;
+    rotate: 180deg;
+    pointer-events: none;
+}
+
+.rotate i {
+    transition: transform 3s;
+}
+
+.rotate:hover i {
+    transform: rotate(540deg);
+}
