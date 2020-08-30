@@ -4,16 +4,48 @@ import "../assets/scss/components/DiceInput.scss";
 class DiceInput extends Component {
     constructor(props){
         super(props)
-        console.log("PROPS ", this.props)
     }
 
     calcResult() {
-        console.log(this.props)
         let roll = this.getRolls();
         let dice = this.getDice();
         let boni = this.getBonus();
-        let result = (roll * this.getRandom(dice)) + boni;
-        alert(result)
+        let results = [];
+        for(let i = 0; i < roll; i++) {
+            let result = (this.getRandom(dice)) + parseInt(boni);
+            results.push(result)
+        }
+        this.pushResultToHistory(roll, dice, boni, results);
+    }
+
+    pushResultToHistory(roll, dice, boni, results) {
+        let operator = "+/-";
+        if(boni >= 0) {
+            operator = " + ";
+        } else {
+            operator = ""
+        }
+        let result = 0;
+        let resultsStr = "("
+        let counter = 0;
+        results.forEach(element => {
+            counter++
+            result += element
+            if(counter === results.length) {
+                resultsStr += element
+            } else {
+                resultsStr += element + "+"
+            }
+        });
+        resultsStr += ")";
+        let resultStr = roll + "d" + dice + operator + boni + " = "  + result;
+        let resultData = {
+            resultStr: resultStr,
+            results: resultsStr
+        }
+        let history = this.props.history;
+        history.push(resultData);
+        this.props.setHistory(history);
     }
 
     getRandom(dice) {

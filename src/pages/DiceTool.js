@@ -6,77 +6,50 @@ import DiceInput from "../components/DiceInput";
 class DiceTool extends Component {
     constructor(props) {
         super(props);
-        this.state = {inputList: []};
+        this.state = {
+            inputList: [],
+            history: []
+        };
+
         this.onAddBtnClick = this.onAddBtnClick.bind(this);
+        this.setHistory = this.setHistory.bind(this);
+        this.resetHistory = this.resetHistory.bind(this);
     }
 
-    calcResult() {
-        let roll = this.getRolls();
-        let dice = this.getDice();
-        let boni = this.getBonus();
-        let result = (roll * this.getRandom(dice)) + boni;
-        alert(result)
+    setHistory(history) {
+        this.setState({
+            history: history
+        })
     }
 
-    getRandom(dice) {
-        return Math.ceil(Math.random() * dice)
-    }
-
-    getRolls() {
-        let rolls = document.getElementById("number").value;
-        if (rolls === "") {
-            rolls = 1;
-        }
-        return rolls;
-    }
-
-    getDice() {
-        let dice = document.getElementById("dice");
-        let dice_value = dice.options[dice.selectedIndex].value;
-        switch (dice_value) {
-            case "d2":
-                return 2;
-            case "d4":
-                return 4;
-            case "d6":
-                return 6;
-            case "d8":
-                return 8;
-            case "d10":
-                return 10;
-            case "d12":
-                return 12;
-            case "d20":
-                return 20;
-            case "d100":
-                return 100;
-        }
-    }
-
-    getBonus() {
-        let bonus = document.getElementById("bonus").value;
-        if (bonus === "") {
-            bonus = 0;
-        }
-        return bonus;
+    resetHistory() {
+        this.setState({
+            history: []
+        })
     }
 
     onAddBtnClick(event) {
         const inputList = this.state.inputList;
-        console.log(inputList.length)
         this.setState({
-            inputList: inputList.concat(<DiceInput index={inputList.length}/>)
+            inputList: inputList.concat(<DiceInput history={this.state.history} setHistory={this.setHistory} index={inputList.length} />)
         });
     }
 
     render() {
+        const history = this.state.history.map((item) => {
+            return <div className="history-item-block">
+                    <p className="history-item" >{item.resultStr}</p>
+                    <p className="history-item" >{item.results}</p>
+                </div>
+        })
+
         return (
             <div className="dicetool h-100">
                 <div className="flex-row justify-content-sb h-100">
                     <div className="flex-column">
-                        <DiceInput index={100}></DiceInput>
-                        <DiceInput index={101}></DiceInput>
-                        <DiceInput index={102}></DiceInput>
+                        <DiceInput history={this.state.history} setHistory={this.setHistory} index={100}></DiceInput>
+                        <DiceInput history={this.state.history} setHistory={this.setHistory} index={101}></DiceInput>
+                        <DiceInput history={this.state.history} setHistory={this.setHistory} index={102}></DiceInput>
                         {this.state.inputList.map(function (input) {
                             return input;
                         })}
@@ -84,6 +57,8 @@ class DiceTool extends Component {
                     </div>
                     <div className="flex-column history">
                         <h2 className="history-title">Dice History</h2>
+                        <div className="history-item-container" id="history">{history}</div>
+                        <button className="fas fa-trash-alt btn mx-auto icon-small reset-fixed" onClick={() => {this.resetHistory()}}></button>
                     </div>
                 </div>
             </div>
