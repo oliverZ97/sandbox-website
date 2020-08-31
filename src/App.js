@@ -8,13 +8,18 @@ import Header from "./components/Header";
 
 const pages = [
   {
+    id: 0,
+    name: "Home",
+    icon: "fa-home"
+  },
+  {
     id: 1,
     name: "Dice Tool",
     icon: "fa-dice-d20"
   },
   {
     id: 2,
-    name: "Test 2",
+    name: "Monster Creator",
     icon: "fa-dragon"
   },
   {
