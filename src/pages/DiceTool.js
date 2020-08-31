@@ -38,15 +38,15 @@ class DiceTool extends Component {
     render() {
         const history = this.state.history.map((item) => {
             return <div className="history-item-block">
-                    <p className="history-item" >{item.resultStr}</p>
-                    <p className="history-item" >{item.results}</p>
-                </div>
+                <p className="history-item" >{item.resultStr}</p>
+                <p className="history-item" >{item.results}</p>
+            </div>
         })
 
         return (
-            <div className="dicetool h-100">
-                <div className="flex-row justify-content-sb h-100">
-                    <div className="flex-column">
+            <div className="dicetool h-100 w-100">
+                <div className="flex-row justify-content-sb h-100 w-100">
+                    <div className="flex-column w-80">
                         <DiceInput history={this.state.history} setHistory={this.setHistory} index={100}></DiceInput>
                         <DiceInput history={this.state.history} setHistory={this.setHistory} index={101}></DiceInput>
                         <DiceInput history={this.state.history} setHistory={this.setHistory} index={102}></DiceInput>
@@ -56,9 +56,11 @@ class DiceTool extends Component {
                         <button className="fas fa-plus-circle btn-large btn-ghost" onClick={this.onAddBtnClick}></button>
                     </div>
                     <div className="flex-column history">
-                        <h2 className="history-title">Dice History</h2>
-                        <div className="history-item-container" id="history">{history}</div>
-                        <button className="fas fa-trash-alt btn mx-auto icon-small reset-fixed" onClick={() => {this.resetHistory()}}></button>
+                        <div className="flex-column justify-content-fs history-top-container">
+                            <h2 className="history-title">Dice History</h2>
+                            <div className="history-item-container" id="history">{history}</div>
+                        </div>
+                        <button className="fas fa-trash-alt btn mx-auto icon-small reset-fixed" onClick={() => { this.resetHistory() }}></button>
                     </div>
                 </div>
             </div>

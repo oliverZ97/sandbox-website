@@ -1,19 +1,18 @@
 @import "../general.scss";
 
 .input-container {
-    width: 200px;
     height: 50px;
     display: flex;
     flex-direction: column;
-    margin-right: 100px;
+    width: 120px;
 }
 .row-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-top: 10px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 15px;
 }
 
 input {

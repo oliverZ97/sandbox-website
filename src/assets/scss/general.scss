@@ -45,6 +45,7 @@ body {
     margin: 5px;
     background-color: theme-color('foreground', 'base');
     transition: ease-out .2s;
+    min-width: 150px;
 }
 
 .btn-large {
@@ -76,4 +77,20 @@ body {
 .my-auto {
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-20 {
+    width: 20%;
 }

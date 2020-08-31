@@ -22,10 +22,17 @@
     justify-content: space-evenly;
 }
 
+.justify-content-fs {
+    justify-content: flex-start;
+}
+
 .history {
-    height: 100%;
+    height: calc(100% - 60px);
     width: 300px;
     border-left: 1px solid theme-color("foreground", "base");
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .history-title {
@@ -44,12 +51,14 @@
 
 .history-item-container {
     overflow-y: scroll;
-    max-height: calc(100% - 200px);
+    max-height: 100%;
+}
+
+.history-top-container {
+    max-height: calc(100% - 50px);
 }
 
 .reset-fixed {
-    position: fixed;
-    bottom: 10px;
-    right: 16px;
     margin-top: 10px;
+    min-height: 40px;
 }
