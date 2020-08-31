@@ -14,7 +14,7 @@ class Main extends Component {
   render() {
     return (
       <main className="main">
-        <DiceTool />
+        {(this.props.active === 1) ? <DiceTool /> : null}
       </main>
     );
   }

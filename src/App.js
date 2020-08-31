@@ -30,14 +30,22 @@ class App extends Component {
     this.state = {
       active: ""
     }
+
+    this.setActiveComponent = this.setActiveComponent.bind(this);
+  }
+
+  setActiveComponent(comp) {
+    this.setState({
+      active: comp
+    })
   }
 
   render() {
     return (
       <div className="App">
         <Header/>
-        <Navbar pages={pages}/>
-        <Main/>
+        <Navbar setActive={this.setActiveComponent} pages={pages}/>
+        <Main active={this.state.active}/>
       </div>
     );
   }
