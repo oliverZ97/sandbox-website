@@ -3,7 +3,7 @@
 @import "./variables.scss";
 
 body {
-    background-color: theme-color('background', 'base');
+    background-color: theme-color("background", "base");
 }
 
 //Icons
@@ -29,11 +29,11 @@ body {
 
 //Text
 .text-dark {
-    color: theme-color('text', 'dark');
+    color: theme-color("text", "dark");
 }
 
 .text-light {
-    color: theme-color('text', 'light');
+    color: theme-color("text", "light");
 }
 
 //Button
@@ -41,10 +41,10 @@ body {
     width: 180px;
     height: 45px;
     border-radius: 0px;
-    border: 1px solid theme-color('foreground', 'base');
+    border: 1px solid theme-color("foreground", "base");
     margin: 5px;
-    background-color: theme-color('foreground', 'base');
-    transition: ease-out .2s;
+    background-color: theme-color("foreground", "base");
+    transition: ease-out 0.2s;
     min-width: 150px;
 }
 
@@ -55,9 +55,9 @@ body {
 }
 
 .btn-ghost {
-    border: 1px solid theme-color('foreground', 'base');
+    border: 1px solid theme-color("foreground", "base");
     background: none;
-    color: theme-color('foreground', 'base');
+    color: theme-color("foreground", "base");
     font-size: 30px;
 }
 
@@ -94,3 +94,4 @@ body {
 .w-20 {
     width: 20%;
 }
+
