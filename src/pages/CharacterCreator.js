@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../assets/scss/pages/MonsterCreator.scss";
+import "../assets/scss/pages/CharacterCreator.scss";
 
 class MonsterCreator extends Component {
     constructor(props) {
@@ -9,9 +9,11 @@ class MonsterCreator extends Component {
     render() {
 
         return (
-            <div>
-                <div>
-                    <label for="name">Name</label>
+            <div className="d-flex flex-row">
+                <div className="d-flex flex-row">
+                    <label for="name">Vorname</label>
+                    <input className="input" name="name" type="text"></input>
+                    <label for="name">Nachname</label>
                     <input className="input" name="name" type="text"></input>
                 </div>
 

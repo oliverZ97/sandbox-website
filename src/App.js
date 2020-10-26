@@ -19,12 +19,12 @@ const pages = [
   },
   {
     id: 2,
-    name: "Monster Creator",
+    name: "Character Creator",
     icon: "fa-dragon"
   },
   {
     id: 3,
-    name: "Test 3",
+    name: "GIF Board",
     icon: "fa-fan"
   }
 ]
