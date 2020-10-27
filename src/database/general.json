@@ -1,0 +1,126 @@
+{
+    "races": {
+        "elves": "Elf",
+        "gnomes": "Gnom",
+        "halfling": "Halbling",
+        "human": "Mensch",
+        "dwarf": "Zwerg"
+    },
+    "classes": {
+        "assasin": {
+            "name": "Assasine",
+            "short": "As",
+            "type": "Warrior"
+        },
+        "barbar": {
+            "name": "Barbar",
+            "short": "Bb",
+            "type": "Warrior"
+        },
+        "bard": {
+            "name": "Barde",
+            "short": "Ba",
+            "type": "Warrior"
+        },
+        "adventurer": {
+            "name": "Glücksritter",
+            "short": "Gl",
+            "type": "Warrior"
+        },
+        "trader": {
+            "name": "Händler",
+            "short": "Hä",
+            "type": "Warrior"
+        },
+        "warrior": {
+            "name": "Krieger",
+            "short": "Kr",
+            "type": "Warrior"
+        },
+        "orderwarrior": {
+            "name": "Ordenskrieger",
+            "short": "Or",
+            "type": "Warrior"
+        },
+        "thief": {
+            "name": "Spitzbube",
+            "short": "Sp",
+            "type": "Warrior"
+        },
+        "ranger": {
+            "name": "Waldläufer",
+            "short": "Wa",
+            "type": "Warrior"
+        },
+        "druid": {
+            "name": "Druide",
+            "short": "Dr",
+            "type": "Magician"
+        },
+        "sorcerer": {
+            "name": "Hexer",
+            "short": "Hx",
+            "type": "Magician"
+        },
+        "wizard": {
+            "name": "Magier",
+            "short": "Ma",
+            "type": "Magician"
+        },
+        "priest_protector": {
+            "name": "Prieser(Beschützer)",
+            "short": "PB",
+            "type": "Magician"
+        },
+        "priest_fighter": {
+            "name": "Priester(Streiter)",
+            "short": "PS",
+            "type": "Magician"
+        },
+        "shaman": {
+            "name": "Schamane",
+            "short": "Sc",
+            "type": "Magician"
+        },
+        "healer": {
+            "name": "Heiler",
+            "short": "Hl",
+            "type": "Magician"
+        },
+        "runemaster": {
+            "name": "Runenmeister",
+            "short": "Rm",
+            "type": "Magician"
+        },
+        "wise": {
+            "name": "Weise",
+            "short": "Ws",
+            "type": "Magician"
+        },
+        "thaumaturge": {
+            "name": "Thaumaturg",
+            "short": "Th",
+            "type": "Magician"
+        },
+        "magister": {
+            "name": "Magister",
+            "short": "Mg",
+            "type": "MagWar"
+        },
+        "shadowwalker": {
+            "name": "Schattengänger",
+            "short": "Sg",
+            "type": "MagWar"
+        },
+        "animalmaster": {
+            "name": "Tiermeister",
+            "short": "Tm",
+            "type": "MagWar"
+        },
+        "investigator": {
+            "name": "Ermittler",
+            "short": "Er",
+            "type": "MagWar"
+        }
+    }
+}
