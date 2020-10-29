@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../assets/scss/pages/DiceTool.scss";
-import PageHeader from "../components/PageHeader";
 import DiceInput from "../components/DiceInput";
 
 class DiceTool extends Component {
