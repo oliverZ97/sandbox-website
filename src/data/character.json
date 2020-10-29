@@ -1,4 +1,10 @@
 {
+    "genders": {
+        "male": "männlich",
+        "female": "weiblich",
+        "divers": "divers",
+        "other": "anderes"
+    },
     "races": {
         "elves": "Elf",
         "gnomes": "Gnom",

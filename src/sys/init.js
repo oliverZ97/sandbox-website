@@ -1,6 +1,7 @@
 var db = require("./database");
 
 exports.init = () => {
-    console.log("machines starting...")
-    db.pouchInit();
+    console.log("database machines starting...")
+    db.pouchCREATEDB("m5_db_1")
+      
 }
