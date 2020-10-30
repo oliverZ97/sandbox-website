@@ -9,6 +9,12 @@
     margin-bottom: 10px;
 }
 
+.input-group-sm {
+    width: 50%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .card {
     width: 50%;
     padding-top: 10px;
@@ -30,4 +36,14 @@ span {
 
 .input {
     height: 44px;
+}
+
+.input-sm {
+    width: 150px;
+    height: 44px;
+}
+
+.span-sm {
+    width: 152px;
+    height: 45.6px;
 }
