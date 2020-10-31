@@ -134,72 +134,90 @@ class CharacterCreator extends Component {
 
                     <div className="card">
                         <div className="d-flex flex-row">
-                        <div className="d-flex flex-column input-group-sm">
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="ST">ST</label>
-                                    <input className="base input-sm" name="ST" type="number" min="1" max="100" value={this.state.base.st}></input>
+                            <div className="d-flex flex-column input-group-sm">
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="ST">ST</label>
+                                        <input className="base input-sm" name="ST" type="number" min="1" max="100" value={this.state.base.st}></input>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="GS">GS</label>
+                                        <input className="base input-sm" name="GS" type="number" min="1" max="100" value={this.state.base.gs}></input>
+                                    </div>
                                 </div>
-                                <div className="input-label">
-                                    <label htmlFor="GS">GS</label>
-                                    <input className="base input-sm" name="GS" type="number" min="1" max="100" value={this.state.base.gs}></input>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="GW">GW</label>
+                                        <input className="base input-sm" name="GW" type="number" min="1" max="100" value={this.state.base.gw}></input>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="KO">KO</label>
+                                        <input className="base input-sm" name="KO" type="number" min="1" max="100" value={this.state.base.ko}></input>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="IN">IN</label>
+                                        <input className="base input-sm" name="IN" type="number" min="1" max="100" value={this.state.base.in}></input>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="ZT">ZT</label>
+                                        <input className="base input-sm" name="ZT" type="number" min="1" max="100" value={this.state.base.zt}></input>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="GW">GW</label>
-                                    <input className="base input-sm" name="GW" type="number" min="1" max="100" value={this.state.base.gw}></input>
+                            <div className="d-flex flex-column input-group-sm">
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="pA">pA</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="pA" >{c.calcPA(this.state.base.in)}</span>
+                                        </div>
+
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="Wk">Wk</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="Wk">{c.calcWk(this.state.base.ko, this.state.base.in)}</span>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div className="input-label">
-                                    <label htmlFor="KO">KO</label>
-                                    <input className="base input-sm" name="KO" type="number" min="1" max="100" value={this.state.base.ko}></input>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="Au">Au</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="Au">{c.calcAu(this.state.race)}</span>
+                                        </div>
+
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="Ausb">AusB</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="Ausb"></span>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="IN">IN</label>
-                                    <input className="base input-sm" name="IN" type="number" min="1" max="100" value={this.state.base.in}></input>
-                                </div>
-                                <div className="input-label">
-                                    <label htmlFor="ZT">ZT</label>
-                                    <input className="base input-sm" name="ZT" type="number" min="1" max="100" value={this.state.base.zt}></input>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="LP">LP</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="LP">8</span>
+                                        </div>
+
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="AP">AP</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark" name="AP"></span>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="d-flex flex-column input-group-sm">
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="pA">pA</label>
-                                    <span className="span-sm text-dark" name="pA" >{c.calcPA(this.state.base.in)}</span>
-                                </div>
-                                <div className="input-label">
-                                    <label htmlFor="Wk">Wk</label>
-                                    <span className="span-sm text-dark" name="Wk">{c.calcWk(this.state.base.ko, this.state.base.in)}</span>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="Au">Au</label>
-                                    <span className="span-sm text-dark" name="Au">{c.calcAu(this.state.race)}</span>
-                                </div>
-                                <div className="input-label">
-                                    <label htmlFor="Ausb">AusB</label>
-                                    <span className="span-sm text-dark" name="Ausb"></span>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-around">
-                                <div className="input-label">
-                                    <label htmlFor="LP">LP</label>
-                                    <span className="span-sm text-dark" name="LP">8</span>
-                                </div>
-                                <div className="input-label">
-                                    <label htmlFor="AP">AP</label>
-                                    <span className="span-sm text-dark" name="AP"></span>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        
+
                         <button className="btn rotate" onClick={() => this.rollBasis("100")}><i className="icon-large fas fa-dice-d20"></i></button>
 
                     </div>
@@ -209,7 +227,7 @@ class CharacterCreator extends Component {
                 <div className="d-flex flex-row">
 
                     <div className="card">
-                        
+
                     </div>
 
                 </div>
