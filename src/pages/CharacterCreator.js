@@ -27,6 +27,15 @@ class CharacterCreator extends Component {
                 gender: "",
                 race: "",
                 class: ""
+            },
+            bonus: {
+                ausb: "",
+                anb: "",
+                abb: "",
+                schb: "",
+                resk: "",
+                resg: "",
+                zaub: ""
             }
         }
 
@@ -63,6 +72,23 @@ class CharacterCreator extends Component {
                 initial: false
             })
         }
+        this.init();
+    }
+
+    init() {
+        this.rollBasis(100);
+        let ausb = c.calcAusB(this.state.base.ko, this.state.base.st);
+        let schb = c.calcSchB(this.state.base.st, this.state.base.gs);
+        let bonus = {...this.state.bonus};
+        bonus.ausb = ausb;
+        bonus.schb = schb;
+        let classname = document.getElementById("classinput").value.toLowerCase();
+        let character = {...this.state.character_info};
+        character.class = classname;
+        this.setState({
+            bonus: bonus,
+            character_info: character
+        });
     }
 
     rollBasis(dice) {
@@ -165,7 +191,7 @@ class CharacterCreator extends Component {
                                 </div>
                                 <div className="input-label">
                                     <label htmlFor="class">Klasse</label>
-                                    <select className="input" name="class" onChange={this.updateStats}>
+                                    <select id="classinput" className="input" name="class" onChange={this.updateStats}>
                                         {classes}
                                     </select>
                                 </div>
@@ -244,14 +270,14 @@ class CharacterCreator extends Component {
                                     <div className="input-label">
                                         <label htmlFor="LP">LP</label>
                                         <div className="d-flex flex-column justify-content-center span-container">
-                                            <span className="span-sm text-dark" name="LP">8</span>
+                                            <span className="span-sm text-dark" name="LP">{c.calcLP(this.state.character_info.race, this.state.base.ko)}</span>
                                         </div>
 
                                     </div>
                                     <div className="input-label">
                                         <label htmlFor="AP">AP</label>
                                         <div className="d-flex flex-column justify-content-center span-container">
-                                            <span className="span-sm text-dark" name="AP"></span>
+                                            <span className="span-sm text-dark" name="AP">{c.calcAP(this.state.character_info["class"], this.state.bonus.ausb)}</span>
                                         </div>
 
                                     </div>
