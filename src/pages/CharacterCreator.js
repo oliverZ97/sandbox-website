@@ -79,16 +79,17 @@ class CharacterCreator extends Component {
         this.rollBasis(100);
         let ausb = c.calcAusB(this.state.base.ko, this.state.base.st);
         let schb = c.calcSchB(this.state.base.st, this.state.base.gs);
-        let bonus = {...this.state.bonus};
+        let bonus = { ...this.state.bonus };
         bonus.ausb = ausb;
         bonus.schb = schb;
         let classname = document.getElementById("classinput").value.toLowerCase();
-        let character = {...this.state.character_info};
+        let character = { ...this.state.character_info };
         character.class = classname;
         this.setState({
             bonus: bonus,
             character_info: character
         });
+        this.updateStats();
     }
 
     rollBasis(dice) {
@@ -107,37 +108,44 @@ class CharacterCreator extends Component {
         let base = this.state.base;
         let name = event.target.name.toLowerCase();
         base[name] = event.target.value;
-        this.setState({base: base});
+        this.setState({ base: base });
         this.updateStats();
     }
-        
-   
+
     updateStats() {
-        let data = document.querySelectorAll("input, select");
-        let state = {...this.state};
+        let data = document.querySelectorAll("input, select, span");
+        let state = { ...this.state };
         data.forEach((stat) => {
-            if(stat.nodeName === "INPUT") {
+            if (stat.nodeName === "INPUT") {
                 let value = stat.value;
                 let name = stat.name.toLowerCase();
-                if(name === "st" || name === "gs" || name === "gw" || name === "ko" || name === "in" || name === "zt") {
+                if (name === "st" || name === "gs" || name === "gw" || name === "ko" || name === "in" || name === "zt") {
                     state.base[name] = value;
                 } else {
                     state.character_info[name] = value;
                 }
-            } else if(stat.nodeName === "SELECT") {
+            } else if (stat.nodeName === "SELECT") {
                 let value = stat.options[stat.selectedIndex].value.toLowerCase();
                 let name = stat.name;
                 state.character_info[name] = value;
-            } else {
+            } else if (stat.nodeName === "SPAN") {
+                let value = stat.innerText;
+                let name = stat.attributes.name;
+                console.log(stat)
+                console.log(name, value);
+                if(stat.classList.contains("bonus")){
+                    state.bonus[name] = value;
+                } else {
+                    state.character_info[name] = value;
+                }
             }
         })
         this.setState({
             base: state.base,
             character_info: state.character_info
         });
+        console.log(this.state)
     }
-
-
 
     render() {
         if (this.state.initial) {
@@ -294,7 +302,52 @@ class CharacterCreator extends Component {
                 <div className="d-flex flex-row">
 
                     <div className="card">
-
+                        <div className="d-flex flex-row">
+                            <div className="d-flex flex-column input-group-sm">
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="ausb">Ausdauerbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="ausb">{c.calcAusB(this.state.base.ko, this.state.base.st)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="anb">Angriffsbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="anb">{c.calcAnB(this.state.base.gs)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="abb">Abwehrbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="abb">{c.calcAbB(this.state.base.gw)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="schb">Schadensbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="schb">{c.calcSchB(this.state.base.ko, this.state.base.st)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="zaub">Zauberbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="zaub">{c.calcZauB(this.state.base.zt)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="input-label">
+                                        <label htmlFor="resb">Resistenzbonus</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="resb">{c.calcAusB(this.state.base.ko, this.state.base.st)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
