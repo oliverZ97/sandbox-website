@@ -26,7 +26,8 @@ class CharacterCreator extends Component {
                 level: "1",
                 gender: "",
                 race: "",
-                class: ""
+                class: "",
+                classtype: ""
             },
             bonus: {
                 ausb: "",
@@ -68,11 +69,11 @@ class CharacterCreator extends Component {
                 });
         }
         if (this.state.initial) {
+            this.init();
             this.setState({
                 initial: false
             })
         }
-        this.init();
     }
 
     init() {
@@ -82,8 +83,13 @@ class CharacterCreator extends Component {
         let bonus = { ...this.state.bonus };
         bonus.ausb = ausb;
         bonus.schb = schb;
-        let classname = document.getElementById("classinput").value.toLowerCase();
+        let classinput = document.getElementById("classinput")
+        let classname = classinput.value.toLowerCase();
         let character = { ...this.state.character_info };
+        if(classinput.options[classinput.selectedIndex] !== undefined) {
+            let classtype = classinput.options[classinput.selectedIndex].dataset.type;
+            character.classtype = classtype;
+        }
         character.class = classname;
         this.setState({
             bonus: bonus,
@@ -128,15 +134,16 @@ class CharacterCreator extends Component {
                 if (stat.options[stat.selectedIndex] !== undefined) {
                     let value = stat.options[stat.selectedIndex].value.toLowerCase();
                     let name = stat.name;
+                    console.log(stat, name, value)
                     state.character_info[name] = value;
+                } else {
+                    console.log("error")
                 }
 
             } else if (stat.nodeName === "SPAN") {
                 let value = stat.innerText;
                 let name = stat.attributes.name.value;
-                console.log(name)
                 if (stat.classList.contains("bonus")) {
-                    console.log(stat, name)
                     state.bonus[name] = value;
                 } else {
                     state.character_info[name] = value;
@@ -159,7 +166,7 @@ class CharacterCreator extends Component {
         });
 
         const classes = this.state.classes.map((classitem, index) => {
-            return <option key={index}>{classitem.name} ({classitem.short})</option>
+            return <option data-type={classitem.type} key={index}>{classitem.name} ({classitem.short})</option>
         });
 
         const genders = this.state.genders.map((gender, index) => {
@@ -303,6 +310,21 @@ class CharacterCreator extends Component {
 
                 </div>
                 <div className="d-flex flex-row">
+                <div className="card">
+                        <div className="d-flex flex-column">
+                            <div className="d-flex flex-row justify-content-around">
+                                <div className="input-label">
+                                    <label htmlFor="prename">Vorname</label>
+                                    <input className="input" name="prename" type="text" placeholder="Eorn"></input>
+                                </div>
+                                <div className="input-label">
+                                    <label htmlFor="name">Nachname</label>
+                                    <input className="input" name="name" type="text" placeholder="Schildhammer"></input>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
 
                     <div className="card">
                         <div className="d-flex flex-row">
@@ -343,9 +365,17 @@ class CharacterCreator extends Component {
                                         </div>
                                     </div>
                                     <div className="input-label">
-                                        <label htmlFor="resb">Resistenzbonus</label>
+                                        <label htmlFor="resg">Resistenzb. Geist</label>
                                         <div className="d-flex flex-column justify-content-center span-container">
-                                            <span className="span-sm text-dark bonus" name="resb">{c.calcAusB(this.state.base.ko, this.state.base.st)}</span>
+                                            <span className="span-sm text-dark bonus" name="resg">{c.calcResG(this.state.base.in, this.state.character_info.classtype, this.state.character_info.race)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row justify-content-around">
+                                    <div className="input-label">
+                                        <label htmlFor="resk">Resistenzb. Körper</label>
+                                        <div className="d-flex flex-column justify-content-center span-container">
+                                            <span className="span-sm text-dark bonus" name="resk">{c.calcResK(this.state.base.ko, this.state.character_info.classtype, this.state.character_info.race)}</span>
                                         </div>
                                     </div>
                                 </div>
