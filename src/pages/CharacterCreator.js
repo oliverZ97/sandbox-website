@@ -125,15 +125,18 @@ class CharacterCreator extends Component {
                     state.character_info[name] = value;
                 }
             } else if (stat.nodeName === "SELECT") {
-                let value = stat.options[stat.selectedIndex].value.toLowerCase();
-                let name = stat.name;
-                state.character_info[name] = value;
+                if (stat.options[stat.selectedIndex] !== undefined) {
+                    let value = stat.options[stat.selectedIndex].value.toLowerCase();
+                    let name = stat.name;
+                    state.character_info[name] = value;
+                }
+
             } else if (stat.nodeName === "SPAN") {
                 let value = stat.innerText;
-                let name = stat.attributes.name;
-                console.log(stat)
-                console.log(name, value);
-                if(stat.classList.contains("bonus")){
+                let name = stat.attributes.name.value;
+                console.log(name)
+                if (stat.classList.contains("bonus")) {
+                    console.log(stat, name)
                     state.bonus[name] = value;
                 } else {
                     state.character_info[name] = value;
