@@ -11,7 +11,6 @@ class CharacterCreator extends Component {
             genders: [],
             races: [],
             classes: [],
-            initial: true,
             base: {
                 st: 1,
                 gs: 1,
@@ -21,13 +20,13 @@ class CharacterCreator extends Component {
                 zt: 1
             },
             character_info: {
-                prename: "",
-                name: "",
+                prename: "Eorn",
+                name: "Tiefschatten",
                 level: "1",
-                gender: "",
-                race: "",
-                class: "",
-                classtype: ""
+                gender: "männlich",
+                race: "elf",
+                class: "assasine (as)",
+                classtype: "Warrior"
             },
             bonus: {
                 ausb: "",
@@ -43,6 +42,12 @@ class CharacterCreator extends Component {
         this.setCharacterData = this.setCharacterData.bind(this);
         this.updateStats = this.updateStats.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        console.log("mount")
+        this.getFormularData();
+        this.init();
     }
 
     async getFormularData() {
@@ -68,34 +73,24 @@ class CharacterCreator extends Component {
                     classes: Object.values(data.classes)
                 });
         }
-        if (this.state.initial) {
-            this.init();
-            this.setState({
-                initial: false
-            })
-        }
     }
 
     init() {
+        //roll base values
         this.rollBasis(100);
+
+        //calc default boni
         let ausb = c.calcAusB(this.state.base.ko, this.state.base.st);
         let schb = c.calcSchB(this.state.base.st, this.state.base.gs);
         let bonus = { ...this.state.bonus };
         bonus.ausb = ausb;
         bonus.schb = schb;
-        let classinput = document.getElementById("classinput")
-        let classname = classinput.value.toLowerCase();
-        let character = { ...this.state.character_info };
-        if(classinput.options[classinput.selectedIndex] !== undefined) {
-            let classtype = classinput.options[classinput.selectedIndex].dataset.type;
-            character.classtype = classtype;
-        }
-        character.class = classname;
+
+        //set boni to state
         this.setState({
             bonus: bonus,
-            character_info: character
         });
-        this.updateStats();
+        console.log("initial state: ", this.state)
     }
 
     rollBasis(dice) {
@@ -132,9 +127,12 @@ class CharacterCreator extends Component {
                 }
             } else if (stat.nodeName === "SELECT") {
                 if (stat.options[stat.selectedIndex] !== undefined) {
+                    if(stat.id === "classinput") {
+                        let classtype = stat.options[stat.selectedIndex].dataset.type;
+                        state.character_info.classtype = classtype;
+                    }
                     let value = stat.options[stat.selectedIndex].value.toLowerCase();
                     let name = stat.name;
-                    console.log(stat, name, value)
                     state.character_info[name] = value;
                 } else {
                     console.log("error")
@@ -158,9 +156,6 @@ class CharacterCreator extends Component {
     }
 
     render() {
-        if (this.state.initial) {
-            this.getFormularData()
-        }
         const races = this.state.races.map((race, index) => {
             return <option key={index}>{race}</option>
         });
@@ -185,7 +180,7 @@ class CharacterCreator extends Component {
                                 </div>
                                 <div className="input-label">
                                     <label htmlFor="name">Nachname</label>
-                                    <input className="input" name="name" type="text" placeholder="Schildhammer"></input>
+                                    <input className="input" name="name" type="text" placeholder="Tiefschatten"></input>
                                 </div>
                             </div>
                             <div className="d-flex flex-row justify-content-around">
@@ -203,7 +198,7 @@ class CharacterCreator extends Component {
                             <div className="d-flex flex-row justify-content-around">
                                 <div className="input-label">
                                     <label htmlFor="race">Rasse</label>
-                                    <select className="input" name="race" onChange={this.updateStats}>
+                                    <select id="raceinput" className="input" name="race" onChange={this.updateStats}>
                                         {races}
                                     </select>
                                 </div>

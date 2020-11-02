@@ -10,7 +10,7 @@ exports.calcPA = (int) => {
     if(value < 1) {
         value = 1;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcWk = (con, int) => {
@@ -21,7 +21,7 @@ exports.calcWk = (con, int) => {
     if(value < 1) {
         value = 1;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcAu = (race) => {
@@ -30,49 +30,49 @@ exports.calcAu = (race) => {
         case "elf":
             (value < 81) ? value = 81 : value
             break;
-        case "gnome": 
+        case "gnom": 
             (value > 80) ? value = 80 : value
             break;
-        case "dwarf":
+        case "zwerg":
             (value > 80) ? value = 80 : value
             break;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcB = (race) => {
     let value;
     switch(race) {
-        case "gnome":
+        case "gnom":
             value = this.getRandom(3) + this.getRandom(3) + 8;
             break;
-        case "halfling":
+        case "halbling":
             value = this.getRandom(3) + this.getRandom(3) + 8;
             break;
-        case "dwarf":
+        case "zwerg":
             value = this.getRandom(3) + this.getRandom(3) + this.getRandom(3) + 12;
             break;
         default:
             value = this.getRandom(3) + this.getRandom(3) + this.getRandom(3) + this.getRandom(3) + 16;
             break;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcLP = (race, ko) => {
     let value = Math.round(this.getRandom(3) + 7 + (ko/10));
     switch(race) {
-        case "gnome": 
+        case "gnom": 
             value -= 3;
             break;
-        case "halfling":
+        case "halbling":
             value -= 2;
             break;
-        case "dwarf":
+        case "zwerg":
             value += 1;
             break;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcAP = (classname, ausb) => {
@@ -93,13 +93,13 @@ exports.calcAP = (classname, ausb) => {
     classname.includes("(or)")) {
         value += 1;
     }
-    return value;
+    return value.toString();
 }
 
 exports.calcAusB = (ko, st) => {
     let value = Math.ceil(ko/10 + st/20);
     if(value !== 0) {
-        return "+" + value;
+        return "+" + value.toString();
     } else {
         return value;
     }
@@ -109,10 +109,10 @@ exports.calcAusB = (ko, st) => {
 exports.calcSchB = (st, gs) => {
     let value = Math.ceil(st/20 + gs/30 - 3);
     if(value < 0) {
-        value = 0;
+        value = "0";
     }
-    if(value !== 0) {
-        return "+" + value;
+    if(value != 0) {
+        return "+" + value.toString();
     } else {
         return value;
     }
@@ -151,13 +151,13 @@ exports.calcResG = (int, classtype, race) => {
         case "elf":
             value = 2;
             break;
-        case "gnome": 
+        case "gnom": 
             value = 4;
             break;
-        case "halfling":
+        case "halbling":
             value = 4;
             break;
-        case "dwarf": 
+        case "zwerg": 
             value = 3;
             break;
         default:
@@ -170,6 +170,7 @@ exports.calcResG = (int, classtype, race) => {
     if(classtype === "Magician" || classtype === "DarkMagician") {
         value += 2;
     }
+    if(value < 0 ) {value = 0}
     if(value !== 0) {
         value = "+" + Math.ceil(value).toString();
     } else {
@@ -180,21 +181,21 @@ exports.calcResG = (int, classtype, race) => {
 
 exports.calcResK = (ko, classtype, race) => {
     let value;
-    console.log(race)
     switch(race) {
         case "elf":
             value = 2;
             break;
-        case "gnome": 
+        case "gnom": 
             value = 4;
             break;
-        case "halfling":
+        case "halbling":
             value = 4;
             break;
-        case "dwarf": 
+        case "zwerg": 
             value = 3;
             break;
         default:
+            
             if(ko <= 5) {value = -2};
             if(ko <= 20 && ko > 5) {value = -1};
             if(ko <= 80 && ko > 20) {value = 0};
@@ -202,14 +203,13 @@ exports.calcResK = (ko, classtype, race) => {
             if(ko <= 100 && ko > 95) {value = 2};
             break;
     }
-    console.log(value);
     if(classtype === "Magician" || classtype === "DarkMagician") {
         value += 2;
     }
     if(classtype === "Warrior" || classtype === "MagWar") {
         value += 1
     }
-    console.log(value);
+    if(value < 0 ) {value = 0}
     if(value !== 0) {
         value = "+" + Math.ceil(value).toString();
     } else {
