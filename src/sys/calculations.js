@@ -279,7 +279,6 @@ exports.calcWeight = (st, gender, race, height, weight, locked) => {
         }
         value = Math.ceil(value).toString();
     }
-    console.log("VAL: ",value);
     return value;
 }
 

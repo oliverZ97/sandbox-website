@@ -57,6 +57,7 @@ class CharacterCreator extends Component {
         this.updateStats = this.updateStats.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleLockChange = this.handleLockChange.bind(this);
+        this.setLockedValuesToDisplay = this.setLockedValuesToDisplay.bind(this);
     }
 
     componentDidMount() {
@@ -124,7 +125,6 @@ class CharacterCreator extends Component {
         this.setState({
             character: character
         });
-        console.log(this.state)
     }
 
     rollBasis(dice) {
@@ -152,18 +152,30 @@ class CharacterCreator extends Component {
 
     handleLockChange(name) {
         let node = document.getElementById(name);
-        console.log(node)
         let state = {...this.state};
         if(!state.options["lock_" + name]){
-            state.character[name] = node.value;
+            state.character.character_info[name] = node.value;
         } 
         state.options["lock_" + name] = !this.state.options["lock_" + name];
         this.setState({
             options: state.options,
             character: state.character
         })
-        console.log(state.character)
+        console.log("handleLock: ", this.state.character_info);
         this.updateStats()
+        this.setLockedValuesToDisplay()
+    }
+
+    setLockedValuesToDisplay() {
+        let character = {...this.state.character};
+        console.log("setBefore", character.character_info);
+        let locked = document.querySelectorAll("[data-locked]");
+        locked.forEach((node) => {
+            let name = node.name;
+            node.value = character.character_info[name];
+            console.log(node.value)
+        })
+        console.log("setAfter", character.character_info);
     }
 
     updateStats() {
@@ -172,6 +184,7 @@ class CharacterCreator extends Component {
         let spans = document.querySelectorAll("span");
 
         let character = { ...this.state.character }
+        console.log("updateBefore: ", character.character_info);
 
         inputs.forEach((input) => {
             if (!input.dataset.locked) {
@@ -209,7 +222,7 @@ class CharacterCreator extends Component {
         this.setState({
             character: character
         })
-        console.log(this.state.character);
+        console.log("updateAfter: ", character.character_info);
     }
 
     render() {
