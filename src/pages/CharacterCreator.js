@@ -34,7 +34,8 @@ class CharacterCreator extends Component {
                     race: "elf",
                     class: "assasine (as)",
                     classtype: "Warrior",
-                    height: "170"
+                    height: "170",
+                    weight: "70"
                 },
                 bonus: {
                     ausb: "",
@@ -47,8 +48,8 @@ class CharacterCreator extends Component {
                 }
             },
             options: {
-                lock_height: true,
-                lock_weight: true
+                lock_height: false,
+                lock_weight: false
             }
         }
 
@@ -150,11 +151,18 @@ class CharacterCreator extends Component {
     }
 
     handleLockChange(name) {
-        let options = { ...this.state.options };
-        options["lock_" + name] = !this.state.options["lock_" + name];
+        let node = document.getElementById(name);
+        console.log(node)
+        let state = {...this.state};
+        if(!state.options["lock_" + name]){
+            state.character[name] = node.value;
+        } 
+        state.options["lock_" + name] = !this.state.options["lock_" + name];
         this.setState({
-            options: options
+            options: state.options,
+            character: state.character
         })
+        console.log(state.character)
         this.updateStats()
     }
 
@@ -174,6 +182,8 @@ class CharacterCreator extends Component {
                 } else {
                     character.character_info[name] = value;
                 }
+            } else {
+                input.value = character.character_info[name];
             }
         })
         selects.forEach((select) => {
@@ -332,11 +342,11 @@ class CharacterCreator extends Component {
                                 <div className="input-label">
                                     <label htmlFor="height">Größe(cm)</label>
                                     {this.state.options.lock_height && <div className="d-flex flex-row justify-content-between span-container">
-                                        <span data-locked={this.state.options.lock_height} className="span-sm text-dark" name="height">{c.calcHeight(this.state.character.base.st, this.state.character.character_info.gender, this.state.character.character_info.race)}</span>
+                                        <span id="height" data-locked={this.state.options.lock_height} className="span-sm text-dark" name="height">{c.calcHeight(this.state.character.base.st, this.state.character.character_info.gender, this.state.character.character_info.race, this.state.character.height, this.state.options.lock_height)}</span>
                                         <FaLock className="text-dark" onClick={() => { this.handleLockChange("height") }} />
                                     </div>}
                                     {!this.state.options.lock_height && <div className="d-flex flex-row justify-content-between span-container">
-                                        <input data-locked={this.state.options.lock_height} className="input text-dark" type="number" min="1" defaultValue="150" placeholder="170" name="height" ></input>
+                                        <input id="height" data-locked={this.state.options.lock_height} className="input text-dark" type="number" min="1" defaultValue="150" placeholder="170" name="height" ></input>
                                         <FaUnlock className="text-dark" onClick={() => { this.handleLockChange("height") }} />
                                     </div>}
 
@@ -344,11 +354,11 @@ class CharacterCreator extends Component {
                                 <div className="input-label">
                                     <label htmlFor="weight">Gewicht(kg)</label>
                                     {this.state.options.lock_weight && <div className="d-flex flex-row justify-content-between span-container">
-                                        <span data-locked={this.state.options.lock_weight} className="span-sm text-dark" name="weight">{c.calcWeight(this.state.character.base.st, this.state.character.character_info.gender, this.state.character.character_info.race, this.state.character.character_info.height)}</span>
+                                        <span id="weight" data-locked={this.state.options.lock_weight} className="span-sm text-dark" name="weight">{c.calcWeight(this.state.character.base.st, this.state.character.character_info.gender, this.state.character.character_info.race, this.state.character.character_info.height, this.state.character.character_info.weight, this.state.options.lock_weight)}</span>
                                         <FaLock className="text-dark" onClick={() => { this.handleLockChange("weight") }} />
                                     </div>}
                                     {!this.state.options.lock_weight && <div className="d-flex flex-row justify-content-between span-container">
-                                        <input data-locked={this.state.options.lock_weight} className="input text-dark" type="number" min="1" defaultValue="75" placeholder="75" name="weight" ></input>
+                                        <input id="weight" data-locked={this.state.options.lock_weight} className="input text-dark" type="number" min="1" defaultValue="75" placeholder="75" name="weight" ></input>
                                         <FaUnlock className="text-dark" onClick={() => { this.handleLockChange("weight") }} />
                                     </div>}
 

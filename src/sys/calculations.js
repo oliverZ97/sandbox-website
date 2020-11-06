@@ -218,59 +218,68 @@ exports.calcResK = (ko, classtype, race) => {
     return value;
 }
 
-exports.calcHeight = (st, gender, race) => {
+exports.calcHeight = (st, gender, race, height, locked) => {
     let value;
-    switch (race) {
-        case "elf":
-            value = this.getRandom(6) + this.getRandom(6) + st / 10 + 160;
-            break;
-        case "gnom":
-            value = this.getRandom(6) + st / 10 + 90;
-            break;
-        case "halbling":
-            value = this.getRandom(6) + this.getRandom(6) + st / 10 + 100;
-            break;
-        case "zwerg":
-            value = this.getRandom(6) + st / 10 + 130;
-            break;
-        default:
-
-            if (gender === "männlich") {
-                value = this.getRandom(20) + this.getRandom(20) + st / 10 + 150;
-            } else {
-                value = this.getRandom(20) + this.getRandom(20) + st / 10 + 140;
-            }
-            break;
+    if(locked) {
+        value = height;
+    } else {
+        switch (race) {
+            case "elf":
+                value = this.getRandom(6) + this.getRandom(6) + st / 10 + 160;
+                break;
+            case "gnom":
+                value = this.getRandom(6) + st / 10 + 90;
+                break;
+            case "halbling":
+                value = this.getRandom(6) + this.getRandom(6) + st / 10 + 100;
+                break;
+            case "zwerg":
+                value = this.getRandom(6) + st / 10 + 130;
+                break;
+            default:
+    
+                if (gender === "männlich") {
+                    value = this.getRandom(20) + this.getRandom(20) + st / 10 + 150;
+                } else {
+                    value = this.getRandom(20) + this.getRandom(20) + st / 10 + 140;
+                }
+                break;
+        }
+        value = Math.ceil(value).toString();
     }
-    value = Math.ceil(value).toString();
     return value;
 }
 
-exports.calcWeight = (st, gender, race, height) => {
+exports.calcWeight = (st, gender, race, height, weight, locked) => {
     let value;
-    switch (race) {
-        case "elf":
-            value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) - 8 + st / 10 + parseInt(height) - 120;
-            break;
-        case "gnom":
-            value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 90;
-            break;
-        case "halbling":
-            value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + 3 + st / 10 + parseInt(height) - 90;
-            break;
-        case "zwerg":
-            value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 90;
-            break;
-        default:
-
-            if (gender === "männlich") {
-                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 120;
-            } else {
-                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) - 4 + st / 10 + parseInt(height) - 90;
-            }
-            break;
+    if(locked) {
+        value = weight;
+    } else {
+        switch (race) {
+            case "elf":
+                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) - 8 + st / 10 + parseInt(height) - 120;
+                break;
+            case "gnom":
+                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 90;
+                break;
+            case "halbling":
+                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + 3 + st / 10 + parseInt(height) - 90;
+                break;
+            case "zwerg":
+                value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 90;
+                break;
+            default:
+    
+                if (gender === "männlich") {
+                    value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + st / 10 + parseInt(height) - 120;
+                } else {
+                    value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) - 4 + st / 10 + parseInt(height) - 90;
+                }
+                break;
+        }
+        value = Math.ceil(value).toString();
     }
-    value = Math.ceil(value).toString();
+    console.log("VAL: ",value);
     return value;
 }
 
