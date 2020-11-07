@@ -3,6 +3,7 @@ import "../assets/scss/pages/CharacterCreator.scss";
 import "regenerator-runtime/runtime.js";
 import BasisCard from "../components/BasisCard";
 import CharCard from "../components/CharCard";
+import StatCard from "../components/StatCard";
 const db = require("../sys/database");
 const c = require("../sys/calculations");
 
@@ -116,6 +117,7 @@ class CharacterCreator2 extends Component {
             <div>
                 {this.state.activeStep === 1 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
                 {this.state.activeStep === 2 && <CharCard state={this.state} update={this.updateCharacter} />}
+                {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
                 <div>
                     <button onClick={this.nextStep}>next</button>
                     {this.state.activeStep > 1 && <button onClick={this.previousStep}>back</button>}
