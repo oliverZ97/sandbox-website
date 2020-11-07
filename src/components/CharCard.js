@@ -70,11 +70,11 @@ class CharCard extends Component {
                         <Input name={"Nachname"} label={"name"} placeholder={"Tiefschatten"} type={"text"} classlist={"char"} function={this.updateCardState}/>
                     </div>
                     <div className="d-flex flex-row justify-content-around">
-                        <Select id={"genderinput"} name={"Geschlecht"} label={"gender"} content={this.props.state.genders} change={this.updateStats} classlist={"char"} function={this.updateCardState}/>
+                        <Select id={"genderinput"} name={"Geschlecht"} label={"gender"} content={this.props.state.genders} classlist={"char"} function={this.updateCardState}/>
                         <Numberinput name={"Grad"} placeholder={"1"} label={"level"} type={"number"} classlist={"char"} function={this.updateCardState}/>
                     </div>
                     <div className="d-flex flex-row justify-content-around">
-                        <Select id={"raceinput"} name={"Rasse"} label={"race"} content={this.props.state.races} change={this.updateStats} classlist={"char"} function={this.updateCardState}/>
+                        <Select id={"raceinput"} name={"Rasse"} label={"race"} content={this.props.state.races} classlist={"char"} function={this.updateCardState}/>
                         <div className="input-label">
                             <label htmlFor="classname">Klasse</label>
                             <select id="classinput" className="input char" name="classname" onChange={this.updateClass}>

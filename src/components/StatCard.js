@@ -3,7 +3,7 @@ import Numberinput from "./Numberinput";
 const c = require("../sys/calculations");
 
 class BasisCard extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -13,10 +13,10 @@ class BasisCard extends Component {
         this.roll = this.roll.bind(this);
         this.updateCardState = this.updateCardState.bind(this);
     }
-    
+
     roll() {
         let inputs = Object.values(document.getElementsByClassName("stat"));
-        let stat = {...this.state.stat}
+        let stat = { ...this.state.stat }
         inputs.forEach((node) => {
             let name = node.name.toLowerCase();
             let val = parseInt(this.getFormulaValue(name));
@@ -32,7 +32,7 @@ class BasisCard extends Component {
 
     getFormulaValue(name) {
         let value;
-        switch(name) {
+        switch (name) {
             case "au":
                 value = c.calcAu(this.props.state.character.character_info.race);
                 break;
@@ -42,10 +42,10 @@ class BasisCard extends Component {
             case "wk":
                 value = c.calcWk(this.props.state.character.base.ko, this.props.state.character.base.in);
                 break;
-            case "b": 
+            case "b":
                 value = c.calcB(this.props.state.character.character_info.race);
                 break;
-            case "lp": 
+            case "lp":
                 value = c.calcLP(this.props.state.character.character_info.race, this.props.state.character.base.ko);
                 break;
             case "ap":
@@ -56,10 +56,10 @@ class BasisCard extends Component {
     }
 
     updateCardState(name, value) {
-        let stat = {...this.state.stat};
+        let stat = { ...this.state.stat };
         stat[name] = value;
         this.setState({
-            stat : stat
+            stat: stat
         })
         this.props.state.character.stat = stat;
         this.props.update(this.props.state.character);
@@ -69,22 +69,24 @@ class BasisCard extends Component {
         return (
             <div className="card">
                 <div className="d-flex flex-row">
-                    <div className="d-flex flex-column input-group-sm">
+                    <div className="d-flex flex-column input-group">
                         <div className="d-flex flex-row justify-content-around">
-                            <Numberinput name={"pA"} placeholder={"1"} label={"pA"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
-                            <Numberinput name={"Wk"} placeholder={"1"} label={"Wk"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
+                            <Numberinput name={"pA"} placeholder={"1"} label={"pA"} type={"number"} classlist={"stat"} function={this.updateCardState} />
+                            <Numberinput name={"Wk"} placeholder={"1"} label={"Wk"} type={"number"} classlist={"stat"} function={this.updateCardState} />
                         </div>
                         <div className="d-flex flex-row justify-content-around">
-                            <Numberinput name={"Au"} placeholder={"1"} label={"Au"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
-                            <Numberinput name={"B"} placeholder={"1"} label={"B"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
+                            <Numberinput name={"Au"} placeholder={"1"} label={"Au"} type={"number"} classlist={"stat"} function={this.updateCardState} />
+                            <Numberinput name={"B"} placeholder={"1"} label={"B"} type={"number"} classlist={"stat"} function={this.updateCardState} />
                         </div>
                         <div className="d-flex flex-row justify-content-around">
-                            <Numberinput name={"LP"} placeholder={"1"} label={"LP"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
-                            <Numberinput name={"AP"} placeholder={"1"} label={"AP"} type={"number"} classlist={"stat"} function={this.updateCardState}/>
+                            <Numberinput name={"LP"} placeholder={"1"} label={"LP"} type={"number"} classlist={"stat"} function={this.updateCardState} />
+                            <Numberinput name={"AP"} placeholder={"1"} label={"AP"} type={"number"} classlist={"stat"} function={this.updateCardState} />
                         </div>
                     </div>
                 </div>
-                <button className="btn rotate" onClick={() => this.roll()}><i className="icon-large fas fa-dice-d20"></i></button>
+                <div className="d-flex flex-row justify-content-center">
+                    <button className="btn rotate btn-container" onClick={() => this.roll()}><i className="icon-large fas fa-dice-d20"></i></button>
+                </div>
             </div>
         );
     }
@@ -92,4 +94,3 @@ class BasisCard extends Component {
 
 export default BasisCard;
 
-                                    

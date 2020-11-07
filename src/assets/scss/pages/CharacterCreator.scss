@@ -17,13 +17,17 @@
     padding-right: 5px;
 }
 
-.card {
-    width: 50%;
-    padding-top: 10px;
-    margin-top: 10px;
+.input-group{
+    width: 100%;
     padding-left: 5px;
     padding-right: 5px;
-    margin-left: 10px;
+}
+
+.card {
+    padding-top: 10px;
+    margin-top: 10px;
+    min-width: 500px;
+    min-height: 500px;
 }
 
 input {
@@ -54,4 +58,8 @@ span {
     height: 46px;
     background-color: #b6d0d5;
     align-items: center;
+}
+
+.btn-container {
+    width: 90% !important;
 }

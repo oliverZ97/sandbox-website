@@ -19,7 +19,6 @@ class BonusCard extends Component {
         let spans = Object.values(document.getElementsByClassName("bonus"));
         let bonus = { ...this.state.bonus }
         spans.forEach((node) => {
-            console.log(node);
             let name = node.dataset.name.toLowerCase();
             let val = this.getFormulaValue(name);
             node.value = val;
@@ -62,8 +61,8 @@ class BonusCard extends Component {
     render() {
         return (
             <div className="card">
-                <div className="d-flex flex-row">
-                    <div className="d-flex flex-column input-group-sm">
+                <div className="d-flex flex-row justify-content-center">
+                    <div className="d-flex flex-column input-group">
                         <div className="d-flex flex-row justify-content-around">
                             <Spanfield name={"Ausdauerbonus"} label={"ausb"} classlist={"bonus"} value={this.state.bonus.ausb} />
                             <Spanfield name={"Angriffsbonus"} label={"anb"} classlist={"bonus"} value={this.state.bonus.anb} />
@@ -81,8 +80,9 @@ class BonusCard extends Component {
                         </div>
                     </div>
                 </div>
-                <button className="btn rotate" onClick={() => this.setBonus()}><i className="icon-large fas fa-dice-d20"></i></button>
-
+                <div className="d-flex flex-row justify-content-center">
+                    <button className="btn rotate btn-container" onClick={() => this.setBonus()}><i className="icon-large fas fa-dice-d20"></i></button>
+                </div>
             </div>
         );
     }

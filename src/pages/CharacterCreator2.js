@@ -5,6 +5,7 @@ import BasisCard from "../components/BasisCard";
 import CharCard from "../components/CharCard";
 import StatCard from "../components/StatCard";
 import BonusCard from "../components/BonusCard";
+import BackgroundCard from "../components/BackgroundCard";
 const db = require("../sys/database");
 const c = require("../sys/calculations");
 
@@ -18,6 +19,7 @@ class CharacterCreator2 extends Component {
             statures: [],
             milieus: [],
             weaponhand: [],
+            origins: [],
             character: {
                 base: {},
                 character_info: {},
@@ -42,12 +44,13 @@ class CharacterCreator2 extends Component {
     }
 
     async getFormularData() {
-        db.pouchGET("gender", this.setCharacterData)
-        db.pouchGET("race", this.setCharacterData)
-        db.pouchGET("class", this.setCharacterData)
-        db.pouchGET("stature", this.setCharacterData)
-        db.pouchGET("milieu", this.setCharacterData)
-        db.pouchGET("weaponhand", this.setCharacterData)
+        db.pouchGET("gender", this.setCharacterData);
+        db.pouchGET("race", this.setCharacterData);
+        db.pouchGET("class", this.setCharacterData);
+        db.pouchGET("stature", this.setCharacterData);
+        db.pouchGET("milieu", this.setCharacterData);
+        db.pouchGET("weaponhand", this.setCharacterData);
+        db.pouchGET("origin", this.setCharacterData);
     }
 
     //set select contents
@@ -83,6 +86,10 @@ class CharacterCreator2 extends Component {
                     weaponhand: Object.values(data.weaponhands)
                 })
                 break;
+            case "origin":
+                this.setState({
+                    origins: Object.values(data.origins)
+                })
         }
     }
 
@@ -114,15 +121,19 @@ class CharacterCreator2 extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.activeStep === 1 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
-                {this.state.activeStep === 2 && <CharCard state={this.state} update={this.updateCharacter} />}
-                {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
-                {this.state.activeStep === 4 && <BonusCard state={this.state} update={this.updateCharacter} />}
-                <div>
-                    {this.state.activeStep > 1 && <button onClick={this.previousStep}>back</button>}
-                    <button onClick={this.nextStep}>next</button>
+            <div className="d-flex flex-row justify-content-center">
+                <div className="d-flex flex-column justify-content-center">
+                    {this.state.activeStep === 1 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
+                    {this.state.activeStep === 2 && <CharCard state={this.state} update={this.updateCharacter} />}
+                    {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
+                    {this.state.activeStep === 4 && <BonusCard state={this.state} update={this.updateCharacter} />}
+                    {this.state.activeStep === 5 && <BackgroundCard state={this.state} update={this.updateCharacter} />}
+                    <div className="d-flex flex-row justify-content-between">
+                        {this.state.activeStep > 1 && <button className="btn btn-small" onClick={this.previousStep}>back</button>}
+                        <button className="btn btn-small" onClick={this.nextStep}>next</button>
+                    </div>
                 </div>
+
             </div>
         );
     }
