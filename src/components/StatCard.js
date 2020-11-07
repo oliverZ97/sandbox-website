@@ -65,6 +65,10 @@ class BasisCard extends Component {
         this.props.update(this.props.state.character);
     }
 
+    componentDidMount() {
+        this.roll()
+    }
+
     render() {
         return (
             <div className="card">

@@ -88,7 +88,20 @@ class BackgroundCard extends Component {
     }
 
     updateOrigin() {
+        let char = { ...this.state.character_infos };
+        let node = document.getElementById("origins");
+        let selected = node.options[node.selectedIndex];
+        let value = selected.value;
+        char.origin = value;
+        this.setState({
+            character_infos: char
+        })
+        this.props.state.character.character_info = char;
+        this.props.update(this.props.state.character);
+    }
 
+    componentDidMount() {
+        this.calcLook()
     }
 
     render() {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Input from "./Input";
 import Select from "./Select";
 import Numberinput from "./Numberinput";
+import { FaChargingStation } from "react-icons/fa";
 const c = require("../sys/calculations");
 
 class CharCard extends Component {
@@ -14,6 +15,7 @@ class CharCard extends Component {
         this.updateCardState = this.updateCardState.bind(this);
         this.updateClass = this.updateClass.bind(this);
         this.initSelectsOnFirstUpdate = this.initSelectsOnFirstUpdate.bind(this);
+        this.charinit = this.charinit.bind(this);
     }
 
     updateCardState(name, value) {
@@ -22,6 +24,7 @@ class CharCard extends Component {
             char = this.initSelectsOnFirstUpdate(char);
         }
         char[name] = value;
+        console.log(char)
         this.setState({
             character_infos: char
         })
@@ -54,6 +57,27 @@ class CharCard extends Component {
         })
         this.props.state.character.character_info = char;
         this.props.update(this.props.state.character);
+    }
+
+    charinit() {
+        let char = { ...this.state.character_infos };
+        char = this.initSelectsOnFirstUpdate(char);
+        let inputs = Object.values(document.getElementsByClassName("char"));
+        inputs.forEach((node) => {
+            if(node.tagName === "INPUT") {
+                node.value = node.placeholder;
+                char[node.name] = node.value;
+            }
+        })
+        this.setState({
+            character_infos: char
+        })
+        this.props.state.character.character_info = char;
+        this.props.update(this.props.state.character);
+    }
+
+    componentDidMount() {
+        this.charinit();
     }
 
     render() {

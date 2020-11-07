@@ -98,7 +98,6 @@ class CharacterCreator2 extends Component {
     }
 
     setInfoTexts(data) {
-        console.log(data);
         this.setState({
             infotexts: data
         })
@@ -115,6 +114,7 @@ class CharacterCreator2 extends Component {
     }
 
     nextStep() {
+        console.log(this.state.character)
         let active = this.state.activeStep + 1;
         this.setState({
             activeStep: active
@@ -145,7 +145,7 @@ class CharacterCreator2 extends Component {
                     {this.state.activeStep === 5 && <BackgroundCard state={this.state} update={this.updateCharacter} />}
                     <div className="d-flex flex-row justify-content-between">
                         {this.state.activeStep > 1 && <button className="btn btn-small" onClick={this.previousStep}><FaArrowLeft/></button>}
-                        <button className="btn btn-small" onClick={this.nextStep}><FaArrowRight/></button>
+                        {this.state.activeStep < 6 && <button className="btn btn-small" onClick={this.nextStep}><FaArrowRight/></button>}
                     </div>
                 </div>
 

@@ -58,6 +58,10 @@ class BonusCard extends Component {
         return value;
     }
 
+    componentDidMount() {
+        this.setBonus();
+    }
+
     render() {
         return (
             <div className="card">
@@ -79,9 +83,6 @@ class BonusCard extends Component {
                             <Spanfield name={"Resistenzb.(Körper)"} label={"resk"} classlist={"bonus"} value={this.state.bonus.resk} />
                         </div>
                     </div>
-                </div>
-                <div className="d-flex flex-row justify-content-center">
-                    <button className="btn rotate btn-container" onClick={() => this.setBonus()}><i className="icon-large fas fa-dice-d20"></i></button>
                 </div>
             </div>
         );

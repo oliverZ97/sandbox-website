@@ -13,6 +13,7 @@ class BasisCard extends Component {
         this.roll = this.roll.bind(this);
         this.updateCardState = this.updateCardState.bind(this);
         this.calcAusb = this.calcAusb.bind(this);
+        this.baseinit = this.baseinit.bind(this);
     }
 
     roll(dice) {
@@ -46,6 +47,14 @@ class BasisCard extends Component {
         })
         this.props.character.base = base;
         this.props.update(this.props.character);
+    }
+
+    baseinit() {
+        this.roll(100);
+    }
+
+    componentDidMount() {
+        this.baseinit();
     }
 
     render() {
