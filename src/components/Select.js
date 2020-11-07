@@ -22,7 +22,7 @@ class Select extends Component {
     return (
         <div className="input-label">
         <label htmlFor={this.props.label}>{this.props.name}</label>
-        <select id={this.props.id} className="input" name={this.props.label} onChange={this.returnValue}>
+        <select id={this.props.id} className={"input " + this.props.classlist} name={this.props.label} onChange={this.returnValue}>
             {data}
         </select>
     </div>

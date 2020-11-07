@@ -87,7 +87,6 @@ class CharacterCreator2 extends Component {
 
     init() {
         console.log("initial: ", this.state.character);
-
     }
 
     updateCharacter(newChar) {

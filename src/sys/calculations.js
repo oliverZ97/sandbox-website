@@ -1,5 +1,5 @@
 exports.getRandom = (dice) => {
-    return Math.round(Math.random() * dice)
+    return Math.round(Math.random() * (dice-1) + 1) 
 }
 
 exports.calcPA = (int) => {

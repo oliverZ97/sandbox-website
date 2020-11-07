@@ -19,7 +19,7 @@ class BasisCard extends Component {
         let stat = {...this.state.stat}
         inputs.forEach((node) => {
             let name = node.name.toLowerCase();
-            let val = this.getFormulaValue(name);
+            let val = parseInt(this.getFormulaValue(name));
             node.value = val;
             stat[name] = val;
         })

@@ -13,16 +13,32 @@ class CharCard extends Component {
         }
         this.updateCardState = this.updateCardState.bind(this);
         this.updateClass = this.updateClass.bind(this);
+        this.initSelectsOnFirstUpdate = this.initSelectsOnFirstUpdate.bind(this);
     }
 
     updateCardState(name, value) {
         let char = { ...this.state.character_infos };
+        if(this.state.character_infos.race === undefined){
+            char = this.initSelectsOnFirstUpdate(char);
+        }
         char[name] = value;
         this.setState({
             character_infos: char
         })
         this.props.state.character.character_info = char;
         this.props.update(this.props.state.character);
+    }
+
+    initSelectsOnFirstUpdate(char) {
+        let nodes = Object.values(document.getElementsByClassName("char"));
+        nodes.forEach((node) => {
+            if(node.tagName === "SELECT"){
+                let value = node.value;
+                let name = node.name;
+                char[name] = value;
+            }
+        });
+        return char;
     }
 
     updateClass() {
@@ -60,8 +76,8 @@ class CharCard extends Component {
                     <div className="d-flex flex-row justify-content-around">
                         <Select id={"raceinput"} name={"Rasse"} label={"race"} content={this.props.state.races} change={this.updateStats} classlist={"char"} function={this.updateCardState}/>
                         <div className="input-label">
-                            <label htmlFor="class">Klasse</label>
-                            <select id="classinput" className="input char" name="class" onChange={this.updateClass}>
+                            <label htmlFor="classname">Klasse</label>
+                            <select id="classinput" className="input char" name="classname" onChange={this.updateClass}>
                                 {classes}
                             </select>
                         </div>
