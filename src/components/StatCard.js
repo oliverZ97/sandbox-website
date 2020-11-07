@@ -92,12 +92,4 @@ class BasisCard extends Component {
 
 export default BasisCard;
 
-
-// c.calcPA(this.state.character.base.in)
-// c.calcWk(this.state.character.base.ko, this.state.character.base.in)
-// c.calcAu(this.state.character.character_info.race)
-// c.calcB(this.state.character.character_info.race)
-// c.calcLP(this.state.character.character_info.race, this.state.character.base.ko)
-// c.calcAP(this.state.character.character_info["class"], this.state.character.bonus.ausb)
-
                                     
