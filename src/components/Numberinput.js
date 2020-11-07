@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Input extends Component {
+class Numberinput extends Component {
   constructor(props) {
     super(props);
 
@@ -9,7 +9,7 @@ class Input extends Component {
 
   returnValue() {
     let value = document.getElementById("input_" + this.props.label.toLowerCase()).value;
-    this.props.function(this.props.label.toLowerCase(), value);
+    this.props.function(this.props.label.toLowerCase(), parseInt(value));
   }
 
   render() {
@@ -28,4 +28,4 @@ class Input extends Component {
   }
 }
 
-export default Input;
+export default Numberinput;

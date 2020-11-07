@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../assets/scss/pages/CharacterCreator.scss";
 import "regenerator-runtime/runtime.js";
 import { FaLock, FaUnlock } from "react-icons/fa";
-import Input from "../components/Input";
+import Input from "../components/Numberinput";
 import Select from "../components/Select";
 const db = require("../sys/database");
 const c = require("../sys/calculations");
@@ -127,19 +127,6 @@ class CharacterCreator extends Component {
         });
     }
 
-    rollBasis(dice) {
-        let basis = Object.keys(this.state.character.base)
-        let newBase = {}
-        basis.forEach((att) => {
-            let roll = c.getRandom(dice);
-            newBase[att] = roll;
-        })
-        let character = { ...this.state.character };
-        character.base = newBase;
-        this.setState({
-            character: character
-        })
-    }
 
     handleChange(event) {
         let character = { ...this.state.character };
