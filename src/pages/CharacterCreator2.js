@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "../assets/scss/pages/CharacterCreator.scss";
 import "regenerator-runtime/runtime.js";
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import BasisCard from "../components/BasisCard";
 import CharCard from "../components/CharCard";
 import StatCard from "../components/StatCard";
 import BonusCard from "../components/BonusCard";
 import BackgroundCard from "../components/BackgroundCard";
+import Infotext from "../components/Infotext";
 const db = require("../sys/database");
 const c = require("../sys/calculations");
 
@@ -33,6 +35,7 @@ class CharacterCreator2 extends Component {
         }
 
         this.setCharacterData = this.setCharacterData.bind(this);
+        this.setInfoTexts = this.setInfoTexts.bind(this);
         this.nextStep = this.nextStep.bind(this);
         this.previousStep = this.previousStep.bind(this);
         this.updateCharacter = this.updateCharacter.bind(this);
@@ -51,6 +54,7 @@ class CharacterCreator2 extends Component {
         db.pouchGET("milieu", this.setCharacterData);
         db.pouchGET("weaponhand", this.setCharacterData);
         db.pouchGET("origin", this.setCharacterData);
+        db.pouchGET("charactercreatorinfotext", this.setInfoTexts);
     }
 
     //set select contents
@@ -93,6 +97,13 @@ class CharacterCreator2 extends Component {
         }
     }
 
+    setInfoTexts(data) {
+        console.log(data);
+        this.setState({
+            infotexts: data
+        })
+    }
+
     init() {
         console.log("initial: ", this.state.character);
     }
@@ -104,12 +115,10 @@ class CharacterCreator2 extends Component {
     }
 
     nextStep() {
-        console.log("move on to next step")
         let active = this.state.activeStep + 1;
         this.setState({
             activeStep: active
         })
-        console.log(this.state)
     }
 
     previousStep() {
@@ -122,15 +131,21 @@ class CharacterCreator2 extends Component {
     render() {
         return (
             <div className="d-flex flex-row justify-content-center">
-                <div className="d-flex flex-column justify-content-center">
+                <div className="d-flex flex-column justify-content-center w-50">
+                    {this.state.activeStep === 1 && <Infotext title={"Basiseigenschaften"}/>}
+                    {this.state.activeStep === 2 && <Infotext title={"Charakterdaten"}/>}
+                    {this.state.activeStep === 3 && <Infotext title={"Charaktereigenschaften"}/>}
+                    {this.state.activeStep === 4 && <Infotext title={"Eigenschaftsboni"}/>}
+                    {this.state.activeStep === 5 && <Infotext title={"Hintergrunddaten"}/>}
+
                     {this.state.activeStep === 1 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
                     {this.state.activeStep === 2 && <CharCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 4 && <BonusCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 5 && <BackgroundCard state={this.state} update={this.updateCharacter} />}
                     <div className="d-flex flex-row justify-content-between">
-                        {this.state.activeStep > 1 && <button className="btn btn-small" onClick={this.previousStep}>back</button>}
-                        <button className="btn btn-small" onClick={this.nextStep}>next</button>
+                        {this.state.activeStep > 1 && <button className="btn btn-small" onClick={this.previousStep}><FaArrowLeft/></button>}
+                        <button className="btn btn-small" onClick={this.nextStep}><FaArrowRight/></button>
                     </div>
                 </div>
 
