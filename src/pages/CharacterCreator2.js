@@ -8,6 +8,7 @@ import StatCard from "../components/StatCard";
 import BonusCard from "../components/BonusCard";
 import BackgroundCard from "../components/BackgroundCard";
 import Infotext from "../components/Infotext";
+import StartCard from "../components/StartCard";
 const db = require("../sys/database");
 const c = require("../sys/calculations");
 
@@ -146,7 +147,7 @@ class CharacterCreator2 extends Component {
                     {this.state.activeStep === 4 && <Infotext title={"Eigenschaftsboni"}/>}
                     {this.state.activeStep === 5 && <Infotext title={"Hintergrunddaten"}/>}
 
-                    {this.state.activeStep === 0 && <p>Start</p>}
+                    {this.state.activeStep === 0 && <StartCard/>}
                     {this.state.activeStep === 2 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
                     {this.state.activeStep === 1 && <CharCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
