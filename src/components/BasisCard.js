@@ -19,8 +19,29 @@ class BasisCard extends Component {
     roll(dice) {
         let inputs = Object.values(document.getElementsByClassName("base"));
         let base = { ...this.state.base }
+        let race = this.props.character.character_info.race;
         inputs.forEach((node) => {
-            let val = c.getRandom(dice);
+            let val;
+            switch(node.name) {
+                case "ST":
+                    val = c.calcST(race);
+                    break;
+                case "GS":
+                    val = c.calcGS(race);
+                    break;
+                case "GW":
+                    val = c.calcGW(race);
+                    break;
+                case "KO":
+                    val = c.calcKO(race);
+                    break;
+                case "IN":
+                    val = c.calcIN(race);
+                    break;
+                case "ZT": 
+                    val = c.calcZT(race);
+                    break;
+            }
             let name = node.name.toLowerCase();
             node.value = val;
             base[name] = val;

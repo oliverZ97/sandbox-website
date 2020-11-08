@@ -18,6 +18,7 @@ class CharacterCreator2 extends Component {
             genders: [],
             races: [],
             classes: [],
+            classes_active: [],
             statures: [],
             milieus: [],
             weaponhand: [],
@@ -31,7 +32,7 @@ class CharacterCreator2 extends Component {
                 lock_height: false,
                 lock_weight: false,
             },
-            activeStep: 1
+            activeStep: 0
         }
 
         this.setCharacterData = this.setCharacterData.bind(this);
@@ -132,19 +133,20 @@ class CharacterCreator2 extends Component {
         return (
             <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column justify-content-center w-50">
-                    {this.state.activeStep === 1 && <Infotext title={"Basiseigenschaften"}/>}
-                    {this.state.activeStep === 2 && <Infotext title={"Charakterdaten"}/>}
+                    {this.state.activeStep === 2 && <Infotext title={"Basiseigenschaften"}/>}
+                    {this.state.activeStep === 1 && <Infotext title={"Charakterdaten"}/>}
                     {this.state.activeStep === 3 && <Infotext title={"Charaktereigenschaften"}/>}
                     {this.state.activeStep === 4 && <Infotext title={"Eigenschaftsboni"}/>}
                     {this.state.activeStep === 5 && <Infotext title={"Hintergrunddaten"}/>}
 
-                    {this.state.activeStep === 1 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
-                    {this.state.activeStep === 2 && <CharCard state={this.state} update={this.updateCharacter} />}
+                    {this.state.activeStep === 0 && <p>Start</p>}
+                    {this.state.activeStep === 2 && <BasisCard character={this.state.character} update={this.updateCharacter} />}
+                    {this.state.activeStep === 1 && <CharCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 3 && <StatCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 4 && <BonusCard state={this.state} update={this.updateCharacter} />}
                     {this.state.activeStep === 5 && <BackgroundCard state={this.state} update={this.updateCharacter} />}
                     <div className="d-flex flex-row justify-content-between">
-                        {this.state.activeStep > 1 && <button className="btn btn-small" onClick={this.previousStep}><FaArrowLeft/></button>}
+                        {this.state.activeStep > 0 && <button className="btn btn-small" onClick={this.previousStep}><FaArrowLeft/></button>}
                         {this.state.activeStep < 6 && <button className="btn btn-small" onClick={this.nextStep}><FaArrowRight/></button>}
                     </div>
                 </div>

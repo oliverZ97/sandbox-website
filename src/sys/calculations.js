@@ -1,7 +1,98 @@
+const { getColor } = require("@giphy/react-components/dist/components/gif");
 let e = require("./experience");
 
 exports.getRandom = (dice) => {
     return Math.round(Math.random() * (dice - 1) + 1)
+}
+
+exports.calcST = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "elf": 
+            (value > 90) ? value = 90 : value;
+            break;
+        case "gnom": 
+            (value > 60) ? value = 60 : value;
+            break;
+        case "halbling": 
+            (value > 80) ? value = 80 : value;
+            break;
+        case "zwerg":
+            (value < 61) ? value = 61 : value;
+            break;
+    }
+    return value;
+}
+
+exports.calcGS = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "gnom": 
+            (value < 81) ? value = 81 : value;
+            break;
+        case "halbling": 
+            (value < 61) ? value = 61 : value;
+            break;
+    }
+    return value;
+}
+
+exports.calcGW = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "elf": 
+            (value < 81) ? value = 81 : value;
+            break;
+        case "gnom": 
+            (value < 81) ? value = 81 : value;
+            break;
+        case "halbling": 
+            (value > 91) ? value = 91 : value;
+            break;
+        case "zwerg":
+            (value > 80) ? value = 80 : value;
+            break;
+    }
+    return value;
+}
+
+exports.calcKO = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "elf": 
+            (value < 51) ? value = 51 : value;
+            break;
+        case "gnom": 
+            (value < 51) ? value = 51 : value;
+            break;
+        case "halbling": 
+            (value < 41) ? value = 41 : value;
+            break;
+        case "zwerg":
+            (value < 61) ? value = 61 : value;
+            break;
+    }
+    return value;
+}
+
+exports.calcIN = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "elf": 
+            (value < 51) ? value = 51 : value;
+            break;
+    }
+    return value;
+}
+
+exports.calcZT = (race) => {
+    let value = this.getRandom(100);
+    switch(race.toLowerCase()) {
+        case "elf": 
+            (value < 51) ? value = 51 : value;
+            break;
+    }
+    return value;
 }
 
 exports.calcPA = (int) => {
@@ -28,7 +119,7 @@ exports.calcWk = (con, int) => {
 
 exports.calcAu = (race) => {
     let value = Math.round(this.getRandom(100));
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             (value < 81) ? value = 81 : value
             break;
@@ -44,7 +135,7 @@ exports.calcAu = (race) => {
 
 exports.calcB = (race) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "gnom":
             value = this.getRandom(3) + this.getRandom(3) + 8;
             break;
@@ -63,7 +154,7 @@ exports.calcB = (race) => {
 
 exports.calcLP = (race, ko) => {
     let value = Math.round(this.getRandom(3) + 7 + (ko / 10));
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "gnom":
             value -= 3;
             break;
@@ -99,7 +190,6 @@ exports.calcAP = (classname, ausb, level, classtype) => {
     } else {
         for(let i = 0; i < level-1; i++) {
             value += e.calcAPOnLevelUp(level, classname, classtype);
-            console.log(value);
         }
     }
     return value.toString();
@@ -156,7 +246,7 @@ exports.calcZauB = (zt) => {
 
 exports.calcResG = (int, classtype, race) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             value = 2;
             break;
@@ -190,7 +280,7 @@ exports.calcResG = (int, classtype, race) => {
 
 exports.calcResK = (ko, classtype, race) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             value = 2;
             break;
@@ -229,7 +319,7 @@ exports.calcResK = (ko, classtype, race) => {
 
 exports.calcHeight = (st, gender, race) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             value = this.getRandom(6) + this.getRandom(6) + st / 10 + 160;
             break;
@@ -258,7 +348,7 @@ exports.calcHeight = (st, gender, race) => {
 
 exports.calcWeight = (st, gender, race, height) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             value = this.getRandom(6) + this.getRandom(6) + this.getRandom(6) + this.getRandom(6) - 8 + st / 10 + parseInt(height) - 120;
             break;
@@ -286,7 +376,7 @@ exports.calcWeight = (st, gender, race, height) => {
 
 exports.calcWeaponhand = (race) => {
     let value;
-    if (race === "gnom") {
+    if (race.toLowerCase() === "gnom") {
         value = "b";
     } else {
         let random = this.getRandom(20);
@@ -334,7 +424,7 @@ exports.calcMilieu = (classname) => {
 
 exports.calcAge = (race) => {
     let value;
-    switch (race) {
+    switch (race.toLowerCase()) {
         case "elf":
             value = this.getRandom(6) + 17 * 5;
             break;
