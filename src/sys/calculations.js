@@ -1,3 +1,5 @@
+let e = require("./experience");
+
 exports.getRandom = (dice) => {
     return Math.round(Math.random() * (dice - 1) + 1)
 }
@@ -75,23 +77,30 @@ exports.calcLP = (race, ko) => {
     return value.toString();
 }
 
-exports.calcAP = (classname, ausb) => {
+exports.calcAP = (classname, ausb, level, classtype) => {
     let value = Math.round(this.getRandom(3) + 1 + parseInt(ausb.replace("+", "")));
+    if (level === 1) {
 
-    if (classname.includes("(bb)") || classname.includes("(kr)") || classname.includes("(wa)")) {
-        value += 2;
-    } else if (classname.includes("(sc)") ||
-        classname.includes("(as)") ||
-        classname.includes("(gl)") ||
-        classname.includes("(sp)") ||
-        classname.includes("(mg)") ||
-        classname.includes("(sg)") ||
-        classname.includes("(tm)") ||
-        classname.includes("(er)") ||
-        classname.includes("(pk)") ||
-        classname.includes("(ba)") ||
-        classname.includes("(or)")) {
-        value += 1;
+        if (classname.includes("(bb)") || classname.includes("(kr)") || classname.includes("(wa)")) {
+            value += 2;
+        } else if (classname.includes("(sc)") ||
+            classname.includes("(as)") ||
+            classname.includes("(gl)") ||
+            classname.includes("(sp)") ||
+            classname.includes("(mg)") ||
+            classname.includes("(sg)") ||
+            classname.includes("(tm)") ||
+            classname.includes("(er)") ||
+            classname.includes("(pk)") ||
+            classname.includes("(ba)") ||
+            classname.includes("(or)")) {
+            value += 1;
+        }
+    } else {
+        for(let i = 0; i < level-1; i++) {
+            value += e.calcAPOnLevelUp(level, classname, classtype);
+            console.log(value);
+        }
     }
     return value.toString();
 }
@@ -325,7 +334,7 @@ exports.calcMilieu = (classname) => {
 
 exports.calcAge = (race) => {
     let value;
-    switch(race) {
+    switch (race) {
         case "elf":
             value = this.getRandom(6) + 17 * 5;
             break;

@@ -49,7 +49,7 @@ class BasisCard extends Component {
                 value = c.calcLP(this.props.state.character.character_info.race, this.props.state.character.base.ko);
                 break;
             case "ap":
-                value = c.calcAP(this.props.state.character.character_info.classname, this.props.state.character.bonus.ausb);
+                value = c.calcAP(this.props.state.character.character_info.classname, this.props.state.character.bonus.ausb, this.props.state.character.character_info.level, this.props.state.character.character_info.classtype);
                 break;
         }
         return value
