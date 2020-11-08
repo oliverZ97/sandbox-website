@@ -23,6 +23,7 @@ class CharacterCreator2 extends Component {
             milieus: [],
             weaponhand: [],
             origins: [],
+            experience : {},
             character: {
                 base: {},
                 character_info: {},
@@ -56,6 +57,7 @@ class CharacterCreator2 extends Component {
         db.pouchGET("weaponhand", this.setCharacterData);
         db.pouchGET("origin", this.setCharacterData);
         db.pouchGET("charactercreatorinfotext", this.setInfoTexts);
+        db.pouchGET("levelup", this.setCharacterData);
     }
 
     //set select contents
@@ -94,6 +96,11 @@ class CharacterCreator2 extends Component {
             case "origin":
                 this.setState({
                     origins: Object.values(data.origins)
+                })
+                break;
+            case "levelup":
+                this.setState({
+                    experience: data.levels
                 })
         }
     }

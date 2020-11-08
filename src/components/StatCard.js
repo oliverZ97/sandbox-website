@@ -65,8 +65,23 @@ class BasisCard extends Component {
         this.props.update(this.props.state.character);
     }
 
+    setExperienceBase() {
+        let level = this.props.state.character.character_info.level;
+        let levels = this.props.state.experience;
+        let es;
+        for(let o in levels) {
+            if(level == o) {
+                es = levels[o].es;
+            }
+        }
+        this.props.state.character.es = parseInt(es);
+        this.props.state.character.ex = parseInt(es);
+        this.props.update(this.props.state.character);
+    }
+
     componentDidMount() {
         this.roll()
+        this.setExperienceBase()
     }
 
     render() {
